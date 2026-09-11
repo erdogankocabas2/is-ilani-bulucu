@@ -1,0 +1,114 @@
+# İş İlanı Tarayıcı & Raporlayıcı Konfigürasyonu
+
+# 1. Arama Kriterleri
+search_criteria:
+  job_titles:
+    - "Software Engineer"
+    - "Full Stack Developer"
+    - "Backend Developer"
+    - "Python Developer"
+    - "AI Engineer"
+    - "Machine Learning Engineer"
+    - "Data Engineer"
+  
+  keywords:
+    - "Python"
+    - "FastAPI"
+    - "Django"
+    - "React"
+    - "TypeScript"
+    - "PostgreSQL"
+    - "Docker"
+    - "LLM"
+    - "LangChain"
+
+  # Başlık veya açıklamada geçtiğinde elenecek kelimeler
+  negative_keywords:
+    - "Senior PHP Developer"
+    - "WordPress Developer"
+    - "Unity Game Developer"
+    - "Embedded C++"
+    - "Stajyer"
+
+  # Çalışma türü filtreleri: ["remote", "hybrid", "onsite"]
+  work_types:
+    - "remote"
+    - "hybrid"
+
+  # Lokasyon filtreleri (Türkiye veya Global Remote)
+  locations:
+    - "Turkey"
+    - "Türkiye"
+    - "Istanbul"
+    - "Ankara"
+    - "Izmir"
+    - "Remote"
+    - "Worldwide"
+    - "Europe"
+
+  # İlanın yayınlanma tarihi (gün cinsinden maksimum yaş)
+  max_days_old: 7
+
+# 2. Kaynak Platformları
+sources:
+  remote_portals:
+    enabled: true
+    remoteok: true
+    weworkremotely: true
+    jobicy: true
+  job_boards:
+    enabled: true
+    linkedin: true
+    kariyer_net: true
+    indeed: true
+  ats_platforms:
+    enabled: true
+    # Greenhouse ve Lever kullanan şirketlerin slug listesi
+    greenhouse_companies:
+      - "gitlab"
+      - "canonical"
+      - "automattic"
+      - "elastic"
+      - "reddit"
+      - "airbnb"
+      - "stripe"
+    lever_companies:
+      - "spotify"
+      - "palantir"
+      - "figma"
+      - "atlassian"
+
+# 3. CV & Aday Profili
+profile:
+  # Klasördeki PDF CV dosya yolu (Varsayılan olarak otomatik tespit edilir)
+  cv_pdf_path: "Erdoğan_Kocabaş_FlowCV_Resume_2026-09-10.pdf"
+  
+  # Minimum bildirim eşik puanı (0-100)
+  # Sadece bu puan ve üzeri ilanlar e-posta ile gönderilir
+  min_match_score: 65
+
+# 4. Yapay Zeka (Gemini API)
+ai:
+  enabled: true
+  model_name: "gemini-2.5-flash"
+  max_concurrency: 5
+
+# 5. E-posta Bildirimi (SMTP)
+email:
+  enabled: true
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
+  use_tls: true
+  sender_name: "Job Radar AI"
+  sender_email: "your_email@gmail.com"
+  recipient_email: "your_email@gmail.com"
+  subject_prefix: "🎯 Günlük İş İlanı Bülteni"
+
+# 6. Google Sheets Senkronizasyonu
+google_sheets:
+  enabled: false
+  # Google Cloud Console'dan indirilen Service Account JSON dosyasının yolu
+  credentials_json: "credentials.json"
+  # E-tablo adı veya ID'si
+  spreadsheet_name: "İş İlanları Takip Tablosu"
+  worksheet_name: "İlanlar"

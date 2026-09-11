@@ -1,0 +1,113 @@
+# İş İlanı Tarayıcı & Raporlayıcı Konfigürasyonu (Sadece Growth Odaklı)
+
+# 1. Arama Kriterleri
+search_criteria:
+  job_titles:
+    - "Growth"
+    - "Growth Specialist"
+    - "Growth Marketing"
+    - "Growth Analyst"
+    - "Product Growth"
+    - "Junior Growth"
+    - "Growth Associate"
+    - "Growth Manager"
+    - "Growth Hacker"
+    - "Büyüme Uzmanı"
+    - "Performance Marketing"
+    - "User Acquisition"
+    - "UA Manager"
+    - "Growth Intern"
+  
+  keywords:
+    - "Growth"
+    - "Büyüme"
+    - "Performance Marketing"
+    - "User Acquisition"
+    - "Acquisition"
+    - "Retention"
+    - "Funnel"
+    - "A/B Test"
+
+  # Senior, Yönetici ve alakasız rolleri kesinlikle ele
+  negative_keywords:
+    - "Senior"
+    - "Sr."
+    - "Sr "
+    - "Lead"
+    - "Director"
+    - "Head of"
+    - "Principal"
+    - "Staff"
+    - "Vice President"
+    - "VP "
+    - "5+ years"
+    - "5+ yıl"
+    - "7+ years"
+    - "10+ years"
+    - "Accounting"
+    - "Chef"
+    - "Quality Control"
+    - "Medikal"
+    - "Mimar"
+    - "İnşaat"
+    - "Vardiyalı"
+    - "Sous"
+    - "Doktor"
+    - "Hemşire"
+
+  work_types:
+    - "remote"
+    - "hybrid"
+    - "onsite"
+
+  locations:
+    - "Turkey"
+    - "Türkiye"
+    - "Istanbul"
+    - "İstanbul"
+    - "Ankara"
+    - "Izmir"
+    - "İzmir"
+    - "Remote"
+
+  max_days_old: 21
+
+# 2. Kaynak Platformları
+sources:
+  remote_portals:
+    enabled: false
+  job_boards:
+    enabled: true
+    linkedin: true
+    kariyer_net: true
+  ats_platforms:
+    enabled: false
+
+# 3. CV & Aday Profili
+profile:
+  cv_pdf_path: "Erdoğan_Kocabaş_FlowCV_Resume_2026-09-10.pdf"
+  min_match_score: 55
+
+# 4. Yapay Zeka (Gemini API)
+ai:
+  enabled: true
+  model_name: "gemini-3.7-flash"
+  max_concurrency: 5
+
+# 5. E-posta Bildirimi (SMTP)
+email:
+  enabled: true
+  smtp_host: "smtp.gmail.com"
+  smtp_port: 587
+  use_tls: true
+  sender_name: "Job Radar AI (Growth Edition)"
+  sender_email: "erdogan.kocabas.2003@gmail.com"
+  recipient_email: "erdogan.kocabas.2003@gmail.com"
+  subject_prefix: "🚀 Growth İlanları Bülteni"
+
+# 6. Google Sheets Senkronizasyonu
+google_sheets:
+  enabled: false
+  credentials_json: "credentials.json"
+  spreadsheet_name: "İş İlanları Takip Tablosu"
+  worksheet_name: "İlanlar"

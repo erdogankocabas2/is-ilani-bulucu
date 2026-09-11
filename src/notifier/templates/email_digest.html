@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }}</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrapper {
+            max-width: 680px;
+            margin: 24px auto;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+            border: 1px solid #e2e8f0;
+        }
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
+            color: #ffffff;
+            padding: 36px 24px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .header p {
+            margin: 0;
+            font-size: 15px;
+            color: #cbd5e1;
+        }
+        .summary-bar {
+            background: #f8fafc;
+            padding: 14px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .content {
+            padding: 24px;
+        }
+        .job-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 22px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .company-banner {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 8px 14px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .company-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1d4ed8;
+        }
+        .source-tag {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            background: #ffffff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .job-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+            line-height: 1.3;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .badge-high {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+        }
+        .badge-mid {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #7dd3fc;
+        }
+        .badge-low {
+            background-color: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+        .job-meta {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 14px;
+        }
+        .job-meta span {
+            margin-right: 14px;
+            display: inline-block;
+        }
+        .job-summary {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #334155;
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+            margin-bottom: 14px;
+        }
+        .skills-container {
+            margin-bottom: 16px;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-right: 6px;
+            margin-bottom: 6px;
+            border: 1px solid #e2e8f0;
+        }
+        .apply-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(37,99,235,0.25);
+        }
+        .footer {
+            background: #f8fafc;
+            padding: 22px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>🚀 Growth & Büyüme Fırsatları</h1>
+            <p>Türkiye'deki Yeni Mezun & Junior Growth Pozisyonları</p>
+        </div>
+        
+        <div class="summary-bar">
+            <span>📅 Tarih: {{ date_str }}</span>
+            <span>⚡ Toplam {{ jobs|length }} Growth İlanı</span>
+        </div>
+
+        <div class="content">
+            {% for job in jobs %}
+            <div class="job-card">
+                <!-- Şirket Adı Vurgulu Alan -->
+                <div class="company-banner">
+                    <div class="company-title">🏢 Şirket: {{ job.company }}</div>
+                    <div class="source-tag">{{ job.source }}</div>
+                </div>
+
+                <div class="job-header">
+                    <div>
+                        <h2 class="job-title">{{ job.title }}</h2>
+                    </div>
+                    <div>
+                        {% if job.ai_score >= 80 %}
+                            <span class="badge badge-high">🎯 %{{ job.ai_score }} Uyum</span>
+                        {% elif job.ai_score >= 65 %}
+                            <span class="badge badge-mid">✨ %{{ job.ai_score }} Uyum</span>
+                        {% else %}
+                            <span class="badge badge-low">⚡ %{{ job.ai_score }} Uyum</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="job-meta">
+                    <span>📍 <strong>Lokasyon:</strong> {{ job.location or 'Türkiye' }}</span>
+                    <span>💼 <strong>Çalışma Türü:</strong> {{ job.work_type|capitalize }}</span>
+                    {% if job.salary %}
+                    <span>💰 <strong>Maaş/Paket:</strong> {{ job.salary }}</span>
+                    {% endif %}
+                </div>
+
+                {% if job.ai_summary %}
+                <div class="job-summary">
+                    <strong>🤖 AI Değerlendirmesi & Neden Uygun:</strong><br>
+                    {{ job.ai_summary }}
+                </div>
+                {% endif %}
+
+                {% if job.key_skills_list %}
+                <div class="skills-container">
+                    {% for skill in job.key_skills_list %}
+                    <span class="skill-tag">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div style="text-align: right; margin-top: 12px;">
+                    <a href="{{ job.url }}" target="_blank" class="apply-btn">{{ job.company }} İlanına Başvur →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="footer">
+            <p>Bu bülten Erdoğan Kocabaş için <strong>Job Radar AI</strong> tarafından özel olarak hazırlanmıştır.</p>
+            <p>Kaynaklar: LinkedIn (TR) & Kariyer.net | Analiz: Google Gemini 3.7 Flash</p>
+        </div>
+    </div>
+</body>
+</html>
